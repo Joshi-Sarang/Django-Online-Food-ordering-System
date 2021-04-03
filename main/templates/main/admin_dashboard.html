@@ -11,10 +11,10 @@
   <title>Admin Dashboard</title>
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{% static "main/sb-admin-2.min.css" %}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'main/sb-admin-2.min.css' %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -126,81 +126,15 @@
               </div>
             </div>
           </div>
-
+        </div>
+      </div>
+    </div>
          
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-      let myChart = document.getElementById('myChart').getContext('2d');
-      let myAreaChart = document.getElementById('myAreaChart').getContext('2d');
-      let count1 = {{ count1 }};
-      let count2 = {{ count2 }};
-      let count3 = {{ count3 }};
+  </div>
 
-      let orderChart1 = new Chart(myChart, {
-        type:'bar',
-        data:{
-          labels:['Spicy Avocado', 'Tempura', 'Maki'],
-          datasets:[{
-            label:'Items',
-            data:[
-              count1,
-              count2,
-              count3,
-            ],
-            backgroundColor:[
-              '#007BFF',
-              '#28A745',
-              '#FFC107',
-            ],
-          }]
-        },
-        options:{
-          layout:{
-            padding:{
-              left:0,
-              right:0,
-              bottom:40,
-              top:0
-            }
-          },
-        }
-      });
-      let orderChart2 = new Chart(myAreaChart, {
-        type:'doughnut',
-        data:{
-          labels:['Spicy Avocado', 'Tempura', 'Maki'],
-          datasets:[{
-            label:'Items',
-            data:[
-              count1,
-              count2,
-              count3,
-            ],
-            backgroundColor:[
-              '#007BFF',
-              '#28A745',
-              '#FFC107',
-            ],
-            borderWidth:1,
-            borderColor:'#777',
-            hoverBorderWidth:1,
-            hoverBorderColor:'#000'
-          }]
-        },
-        options:{
-          layout:{
-            padding:{
-              left:0,
-              right:0,
-              bottom:40,
-              top:0
-            }
-          },
-        }
-      });
-  </script>
 </body>
 
 </html>

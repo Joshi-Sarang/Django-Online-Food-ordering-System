@@ -1,0 +1,241 @@
+{% load get_group %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Online Food Order System</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+<!--
+
+Template 2076 Zentro
+
+http://www.tooplate.com/view/2076-zentro
+
+-->
+	<link rel="stylesheet" href="{% static "css/bootstrap.min.css"               %}">
+	<link rel="stylesheet" href="{% static "css/animate.min.css"                 %}">
+	<link rel="stylesheet" href="{% static "css/font-awesome.min.css"            %}">
+	<link rel="stylesheet" href="{% static "css/nivo-lightbox.css"               %}">
+	<link rel="stylesheet" href="{% static "css/nivo_themes/default/default.css" %}">
+	<link rel="stylesheet" href="{% static "css/style.css"                       %}">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- preloader section -->
+<section class="preloader">
+	<div class="sk-spinner sk-spinner-pulse"></div>
+</section>
+
+<!-- navigation section -->
+<section class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">Sarang's Snacks Center</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'main:home' %}" class="mr-2 text-light">Home</a></li>
+        	    {% if user.is_authenticated %}
+                    {% if request.user|has_group:"admin_owner" %} 
+                        <li><a href="{% url 'main:admin_dashboard' %}" class="mr-2 text-light">DashBoard</a></li>
+                        <li><form class="logout-link mt-2 pt-2" action="{% url 'accounts:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link navbar-btn">Logout</button>
+                            </form>
+                        </li> 
+                    {% else %}
+                        <li><a href="{% url 'main:cart' %}" class="mr-2 text-light">My Cart🛒</a></li>
+                        <li><a href="{% url 'main:order_details' %}" class="mr-2 text-light">Your Orders</a></li>
+                        <li>
+                            <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link navbar-btn">Logout</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'accounts:login' %}" class="mr-2 text-light">Login</a></li>
+                    <li><a href="{% url 'accounts:signup' %}" class="mr-2 text-light">SignUp</a></li>
+                {% endif %}
+			</ul>
+		</div>
+	</div>
+</section>
+
+
+<!-- home section -->
+<section id="home" class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h1>Sarang's Snacks Center</h1>
+				<h2>This app is made in Django</h2>
+			</div>
+		</div>
+	</div>		
+</section>
+
+
+<!-- order section -->
+    <main role="main">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        
+        {% endblock content %}
+
+    </main>
+
+
+<!-- menu section 
+<section id="menu" class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
+				<h1 class="heading">Special Menu</h1>
+				<hr>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Masala Dosa ................ <span>₹ 70</span></h4>
+				<h5>Morning Snack</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Uttapa ........................... <span>₹ 60</span></h4>
+				<h5>Morning Snack</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Medu Vada  ........................ <span>₹ 70</span></h4>
+				<h5>Pork / Tooplate / Lemon</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Orange-Rosemary Salad .......................... <span>₹ 70</span></h4>
+				<h5>Salad / Rosemary / Orange</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Lemon-Rosemary Squid ...................... <span>₹ 70</span></h4>
+				<h5>Squid / Rosemary / Lemon</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Orange-Rosemary Shrimp ........................ <span>₹ 70</span></h4>
+				<h5>Shrimp / Rosemary / Orange</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Lemon-Rosemary Prawn ................... <span>₹ 70</span></h4>
+				<h5>Chicken / Rosemary / Lemon</h5>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<h4>Lemon-Rosemary Seafood ..................... <span>₹ 70</span></h4>
+				<h5>Seafood / Rosemary / Lemon</h5>
+			</div>
+		</div>
+	</div>
+</section>		
+-->
+
+
+<!-- contact section -->
+<section id="contact" class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10 col-sm-12 text-center">
+				<h1 class="heading">Contact Us</h1>
+				<hr>
+			</div>
+			<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+				<form action="#" method="post">
+					<div class="col-md-6 col-sm-6">
+						<input name="name" type="text" class="form-control" id="name" placeholder="Name">
+				  </div>
+					<div class="col-md-6 col-sm-6">
+						<input name="email" type="email" class="form-control" id="email" placeholder="Email">
+				  </div>
+					<div class="col-md-12 col-sm-12">
+						<textarea name="message" rows="8" class="form-control" id="message" placeholder="Message"></textarea>
+					</div>
+					<div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+						<input name="submit" type="submit" class="form-control" id="submit" value="make a reservation">
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2 col-sm-1"></div>
+		</div>
+	</div>
+
+<!-- footer section -->
+<footer class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">Contact Info.</h2>
+				<div class="ph">
+					<p><i class="fa fa-phone"></i> Phone</p>
+					<h4>95-7920-2900</h4>
+				</div>
+				<div class="address">
+					<p><i class="fa fa-map-marker"></i> Our Location</p>
+					<h4>Shivaji Nagar, Pune</h4>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">Open Hours</h2>
+					<p>Sunday <span>10:30 AM - 10:00 PM</span></p>
+					<p>Mon-Fri <span>9:00 AM - 8:00 PM</span></p>
+					<p>Saturday <span>11:30 AM - 10:00 PM</span></p>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">Follow Us</h2>
+				<ul class="social-icon">
+					<li><a href="#" class="fa fa-facebook wow bounceIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="#" class="fa fa-twitter wow bounceIn" data-wow-delay="0.6s"></a></li>
+					<li><a href="#" class="fa fa-behance wow bounceIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-dribbble wow bounceIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="https://github.com/Joshi-Sarang/Django-Online-Food-ordering-System" class="fa fa-github wow bounceIn" data-wow-delay="0.9s"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<!-- copyright section -->
+<section id="copyright">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h3>This app is made in Django</h3>
+				<p>Copyright © Online Food Order System 
+                
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- JAVASCRIPT JS FILES -->	
+<script src="{% static "js/jquery.js"            %}" ></script>
+<script src="{% static "js/bootstrap.min.js"     %}" ></script>
+<script src="{% static "js/jquery.parallax.js"   %}" ></script>
+<script src="{% static "js/smoothscroll.js"      %}" ></script>
+<script src="{% static "js/nivo-lightbox.min.js" %}" ></script>
+<script src="{% static "js/wow.min.js"           %}" ></script>
+<script src="{% static "js/custom.js"            %}" ></script>
+
+</body>
+</html>
