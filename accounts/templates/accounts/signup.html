@@ -7,7 +7,7 @@
         <form class="site-form" action="{% url 'accounts:signup' %}" method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" value="Signup" class="btn">
+            <input type="submit" value="Signup" class="btn btn-primary">
         </form>
     </div>
 </div>
