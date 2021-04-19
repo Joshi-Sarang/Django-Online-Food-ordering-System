@@ -1,7 +1,7 @@
 # Django-Online-Food-ordering-System
-##the system displays available dishes with its name, photo, category, price, and the user has to enter the quantity and customer’s name. The customer can order through online and can see she/his orders in the cart.
+## the system displays available dishes with its name, photo, category, price, and the user has to enter the quantity and customer’s name. The customer can order through online and can see she/his orders in the cart.
 
-###Features of Online Food Ordering System using Django
+### Features of Online Food Ordering System using Django
 
 *Dashboard – For the admin dashboard, you will be able to all the basic access in the whole system. Such as cart items orders, items, users and categories.
 
