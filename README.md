@@ -1,5 +1,5 @@
 # Django-Online-Food-ordering-System
-## the system displays available dishes with its name, photo, category, price, and the user has to enter the quantity and customer’s name. The customer can order through online and can see she/his orders in the cart.
+## This system displays available dishes with its name, photo, category, price, and the user has to enter the quantity and customer’s name. The customer can order through online and can see she/his orders in the cart.
 
 ### Features of Online Food Ordering System using Django
 
@@ -15,4 +15,4 @@
 
 * Login and Logout – By default one of the security features of this system is the secure login and logout system.
 
-#### go live
+#### go live https://sarang-django-food-ordering.herokuapp.com/
