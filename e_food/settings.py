@@ -86,17 +86,7 @@ DATABASES = {
     }
 }
 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'online_food_order_system',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost'
-    }
-}
-'''
+
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
