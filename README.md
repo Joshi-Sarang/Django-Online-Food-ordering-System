@@ -15,4 +15,4 @@
 
 * Login and Logout – By default one of the security features of this system is the secure login and logout system.
 
-#### go live https://sarang-django-food-ordering.herokuapp.com/
+
